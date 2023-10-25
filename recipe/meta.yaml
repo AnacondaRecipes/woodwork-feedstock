@@ -37,6 +37,8 @@ test:
     - woodwork.tests
   requires:
     - pip
+# Skip tests on s390x; missing moto and pyarrow
+{% if not s390x %}
     - boto3 >=1.10.45
     - moto >=3.0.7
     - pyarrow >=4.0.1
@@ -46,8 +48,9 @@ test:
     - smart_open >=5.0.0
   source_files:
     - woodwork/tests/*
+{% endif %}
   commands:
-    - pytest woodwork/tests
+    - pytest woodwork/tests  # [not s390x]
     - pip check
 
 about:
