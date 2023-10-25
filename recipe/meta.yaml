@@ -36,6 +36,7 @@ test:
     - woodwork
     - woodwork.tests
   requires:
+    - pip
     - boto3 >=1.10.45
     - moto >=3.0.7
     - pyarrow >=4.0.1
@@ -56,8 +57,12 @@ about:
   license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE
-  summary: Woodwork provides a common typing namespace for using your existing DataFrames in Featuretools, EvalML, and general ML.
-
+  summary: Woodwork is a Python library that provides robust methods for managing and communicating data typing information.
+  description: |
+    Woodwork provides a common typing namespace for using your existing DataFrames in Featuretools,
+    EvalML, and general ML. A Woodwork DataFrame stores the physical, logical, and semantic data
+    types present in the data. In addition, it can store metadata about the data, allowing you to
+    store specific information you might need for your application.
 
 extra:
   recipe-maintainers:
