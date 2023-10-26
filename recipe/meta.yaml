@@ -8,6 +8,8 @@ package:
 source:
   url: https://pypi.io/packages/source/{{name[0]}}/{{name}}/{{name}}-{{version}}.tar.gz
   sha256: 73cb38e09229216cb7cbbaf2e4352b34d6e40ac44bf774c17e94a9047c7e98e3
+  patches:                        # [win]
+    - remove-absolute-path.patch  # [win]
 
 build:
   entry_points:
@@ -15,8 +17,6 @@ build:
   number: 0
   skip: True  # [py<38]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
-  patches:                        # [win]
-    - remove-absolute-path.patch  # [win]
 
 requirements:
   build:                          # [win]
