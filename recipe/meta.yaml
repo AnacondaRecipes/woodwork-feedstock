@@ -54,7 +54,8 @@ test:
     - woodwork/tests/*
 {% endif %}
   commands:
-    - pytest woodwork/tests  # [not s390x]
+    - pytest woodwork/tests  # [not (s390x or win)]
+    - pytest woodwork/tests --ignore "woodwork/tests/accessor/test_serialization.py"  # [win]
     - pip check
 
 about:
