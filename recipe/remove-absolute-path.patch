@@ -1,0 +1,13 @@
+diff --git a/pyproject.toml b/pyproject.toml
+index e3245ba..b1ed461 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -118,7 +118,7 @@ namespaces = true
+ "*" = [
+     "* __pycache__",
+     "*.py[co]",
+-    "/docs/*"
++    "./docs/*"
+ ]
+ 
+ [tool.setuptools.dynamic]

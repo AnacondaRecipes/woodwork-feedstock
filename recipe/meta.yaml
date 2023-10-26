@@ -15,8 +15,12 @@ build:
   number: 0
   skip: True  # [py<38]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
+  patches:                        # [win]
+    - remove-absolute-path.patch  # [win]
 
 requirements:
+  build:                          # [win]
+    - m2-patch                    # [win]
   host:
     - pip
     - python
