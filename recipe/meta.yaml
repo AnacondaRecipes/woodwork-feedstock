@@ -55,8 +55,10 @@ test:
 {% endif %}
   commands:
     - pytest woodwork/tests  # [not (s390x or win)]
+    # Hard coded paths cause a few tests to break on Windows.
     - pytest woodwork/tests --ignore "woodwork/tests/accessor/test_serialization.py" --ignore "woodwork/tests/utils/test_read_file.py"  # [win]
-    - pip check
+    # docker-py has an exact pinning for pywin32 that cause pip check to fail.
+    - pip check  # [not win]
 
 about:
   doc_url: https://woodwork.alteryx.com
