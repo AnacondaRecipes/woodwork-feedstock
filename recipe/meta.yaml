@@ -55,7 +55,7 @@ test:
 {% endif %}
   commands:
     - pytest woodwork/tests  # [not (s390x or win)]
-    - mkdir pytest-temp
+    - mkdir pytest-temp  # [win]
     - pytest woodwork/tests --basetemp=pytest-temp  # [win]
     # docker-py has an exact pinning for pywin32 that cause pip check to fail.
     - pip check  # [not win]
