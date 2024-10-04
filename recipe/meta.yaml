@@ -31,7 +31,9 @@ requirements:
     - wheel
   run:
     - importlib_resources >=5.10.0
-    - numpy >=1.25.0
+    # restrict numpy <2.0.0 until the next release,
+    # see https://github.com/alteryx/woodwork/pull/1869
+    - numpy >=1.25.0,<2.0.0
     - pandas >=2.0.0
     - python
     - python-dateutil >=2.8.2
