@@ -19,7 +19,8 @@ build:
     - {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
   entry_points:
     - woodwork = woodwork.__main__:cli
-  skip: True  # [py<39]
+  # numpy <2 is not available for py313
+  skip: True  # [py<39 or py>312]
 
 requirements:
   build:                          # [win]
