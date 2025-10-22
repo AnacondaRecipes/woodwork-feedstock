@@ -62,8 +62,7 @@ test:
   commands:
     # docker-py has an exact pinning for pywin32 that cause pip check to fail.
     - pip check  # [not win]
-    - pytest --pyargs woodwork.tests {{ deselect_tests }}  # [not win and py<313]
-    - pytest --pyargs woodwork.tests {{ deselect_tests }}  --deselect=type_system/test_ltype_inference.py # [not win and py313]
+    - pytest --pyargs woodwork.tests {{ deselect_tests }}  --deselect=type_system/test_ltype_inference.py # [not win]
   requires:
     - pip
     - boto3 >=1.34.32
