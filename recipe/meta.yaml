@@ -36,7 +36,7 @@ requirements:
     # see https://github.com/alteryx/woodwork/pull/1869
     - numpy >=1.25.0,<2.0.0
     # Pin below CoW-default version for woodwork 0.31.0
-    - pandas >=2.0.0,<2.1
+    - pandas >=2.0.0,<3
     - python
     - python-dateutil >=2.8.2
     - scikit-learn >=1.1.0
