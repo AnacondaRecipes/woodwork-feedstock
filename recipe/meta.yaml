@@ -68,6 +68,8 @@ test:
   commands:
     # docker-py has an exact pinning for pywin32 that cause pip check to fail.
     - pip check  # [not win]
+    # On Linux and aarch64 -> E pyarrow.lib.ArrowMemoryError: malloc of size 64 failed
+    - export ARROW_DEFAULT_MEMORY_POOL=system  # [linux and aarch64]
     - pytest --pyargs woodwork.tests {{ deselect_tests }}  # [not win]
   requires:
     - pip
