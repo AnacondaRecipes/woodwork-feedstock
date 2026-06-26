@@ -28,7 +28,7 @@ requirements:
   host:
     - pip
     - python
-    - setuptools >=61.0.0
+    - setuptools >=61.0.0,<82
     - wheel
   run:
     - importlib_resources >=5.10.0
@@ -40,6 +40,8 @@ requirements:
     - python-dateutil >=2.8.2
     - scikit-learn >=1.1.0
     - scipy >=1.10.0
+  run_constrained:
+    - setuptools <82
 
 # >   raise ReadError("file could not be opened successfully")
 # E   tarfile.ReadError: file could not be opened successfully
