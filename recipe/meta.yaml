@@ -6,13 +6,13 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: 6ef82af1d5b6525b02efe6417c574c810cfdcc606cb266bd0d7fb17a1d066b67
   patches:  # [win]
     - remove-absolute-path.patch  # [win]
 
 build:
-  number: 1
+  number: 2
   script:
     - del /s /f /q docs  # [win]
     - rm -rf docs  # [not win]
