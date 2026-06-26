@@ -35,7 +35,8 @@ requirements:
     # restrict numpy <2.0.0 until the next release,
     # see https://github.com/alteryx/woodwork/pull/1869
     - numpy >=1.25.0,<2.0.0
-    - pandas >=2.0.0
+    # Pin below CoW-default version for woodwork 0.31.0
+    - pandas >=2.0.0,<2.1
     - python
     - python-dateutil >=2.8.2
     - scikit-learn >=1.1.0
@@ -68,12 +69,12 @@ test:
     # docker-py has an exact pinning for pywin32 that cause pip check to fail.
     - pip check  # [not win]
     - pytest --pyargs woodwork.tests {{ deselect_tests }}  # [not win]
-
   requires:
     - pip
     - boto3 >=1.34.32
     - moto >=5.0.0
-    - pyarrow >=14.0.1
+    # use_nullable_dtypes removed in pyarrow 15
+    - pyarrow >=14.0.1,<15
     - pytest >=7.0.1
     - pytest-xdist >=2.1.0
     - smart_open >=5.0.0
