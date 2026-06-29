@@ -6,13 +6,13 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: 6ef82af1d5b6525b02efe6417c574c810cfdcc606cb266bd0d7fb17a1d066b67
   patches:  # [win]
     - remove-absolute-path.patch  # [win]
 
 build:
-  number: 1
+  number: 2
   script:
     - del /s /f /q docs  # [win]
     - rm -rf docs  # [not win]
@@ -28,18 +28,21 @@ requirements:
   host:
     - pip
     - python
-    - setuptools >=61.0.0
+    - setuptools >=61.0.0,<82
     - wheel
   run:
     - importlib_resources >=5.10.0
     # restrict numpy <2.0.0 until the next release,
     # see https://github.com/alteryx/woodwork/pull/1869
     - numpy >=1.25.0,<2.0.0
-    - pandas >=2.0.0
+    # Pin below CoW-default version for woodwork 0.31.0
+    - pandas >=2.0.0,<3
     - python
     - python-dateutil >=2.8.2
     - scikit-learn >=1.1.0
     - scipy >=1.10.0
+  run_constrained:
+    - setuptools <82
 
 # >   raise ReadError("file could not be opened successfully")
 # E   tarfile.ReadError: file could not be opened successfully
@@ -65,13 +68,15 @@ test:
   commands:
     # docker-py has an exact pinning for pywin32 that cause pip check to fail.
     - pip check  # [not win]
+    # On Linux and aarch64 -> E pyarrow.lib.ArrowMemoryError: malloc of size 64 failed
+    - export ARROW_DEFAULT_MEMORY_POOL=system  # [linux and aarch64]
     - pytest --pyargs woodwork.tests {{ deselect_tests }}  # [not win]
-
   requires:
     - pip
     - boto3 >=1.34.32
     - moto >=5.0.0
-    - pyarrow >=14.0.1
+    # use_nullable_dtypes removed in pyarrow 15
+    - pyarrow >=14.0.1,<15
     - pytest >=7.0.1
     - pytest-xdist >=2.1.0
     - smart_open >=5.0.0
