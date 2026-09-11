@@ -12,7 +12,7 @@ source:
     - remove-absolute-path.patch  # [win]
 
 build:
-  number: 2
+  number: 3
   script:
     - del /s /f /q docs  # [win]
     - rm -rf docs  # [not win]
@@ -24,7 +24,6 @@ build:
 
 requirements:
   build:                          # [win]
-    - m2-patch                    # [win]
   host:
     - pip
     - python
