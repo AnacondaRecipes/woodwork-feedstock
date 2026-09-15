@@ -23,7 +23,6 @@ build:
   skip: True  # [py<39 or py>312]
 
 requirements:
-  build:                          # [win]
   host:
     - pip
     - python
